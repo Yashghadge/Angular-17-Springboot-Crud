@@ -1,0 +1,58 @@
+
+<div class="container">
+  <button mat-raised-button color="accent" routerLink="" class="float-end "><mat-icon>list</mat-icon>Employee List</button>
+<br><br><br>
+
+    <div class="card p-4 ">
+      <h1 class="text-center">Add Employee</h1>
+       <form [formGroup]="employeeForm" (ngSubmit)="onVaildInputSave()" >
+            <mat-form-field appearance="outline">
+              <mat-label>Employee Name</mat-label>
+              <input matInput placeholder="Enter name"  name="name" formControlName="employeeName">
+
+              <mat-icon matSuffix>person</mat-icon>
+              @if (employeeForm.get('employeeName')?.hasError('required')) {
+                <mat-error>employeeName is required</mat-error>}
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Employee Contact Number</mat-label>
+              <input matInput placeholder="Enter contact nummber"
+              type="tel"
+               name="contactNumber" formControlName="contactNumber">
+
+              <mat-icon matSuffix>call</mat-icon>
+              @if (employeeForm.get('contactNumber')?.hasError('required')) {
+                <mat-error>Contact number is required</mat-error>}
+
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Employee Address</mat-label>
+              <input matInput placeholder="Enter Address"  name="address" formControlName="address">
+              <mat-icon matSuffix>apartment</mat-icon>
+              @if (employeeForm.get('address')?.hasError('required')) {
+                <mat-error>Address is required</mat-error>}
+            </mat-form-field>
+
+
+
+
+
+         <div class="text-center mt-2">
+          <section>
+
+            <div class="example-button-row">
+              <button mat-raised-button color="primary" value="Submit" class="m-2" [disabled]="employeeForm.invalid" >Submit <mat-icon>check circle</mat-icon> </button>
+              &nbsp;
+              <button mat-raised-button color="warn" class="m-2" type="reset" >Cancel<mat-icon>cancel</mat-icon></button>
+
+
+
+
+            </div>
+          </section>
+         </div>
+        </form>
+    </div>
+</div>

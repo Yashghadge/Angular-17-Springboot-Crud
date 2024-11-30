@@ -1,0 +1,23 @@
+.example-section{
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.example-margin{
+  margin:  0 10px;
+}
+
+mat-form-field{
+  width: 100%;
+}
+
+.container{
+  margin-top: 20px;
+  margin-left:100px ;
+  margin-right:auto ;
+
+  height: 600px;
+  width: 1000px;
+}
