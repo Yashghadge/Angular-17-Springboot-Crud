@@ -8,6 +8,7 @@ import { Employee } from '../../models/employee.model';
 import {MatDividerModule} from '@angular/material/divider'
 import { Router, RouterLink } from '@angular/router';
 import { EmployeeService } from '../../services/employee.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-add-employee',
   standalone: true,
@@ -27,7 +28,7 @@ export class AddEmployeeComponent {
     employeeSkills:''
   }
    employeeForm!:FormGroup;
-  constructor(private employeeService:EmployeeService,private router:Router,private fb:FormBuilder){
+  constructor(private employeeService:EmployeeService,private router:Router,private fb:FormBuilder,private toastr:ToastrService){
     this.employeeForm = fb.group({
       employeeName:['',Validators.required],
       contactNumber:['',Validators.required],
@@ -53,14 +54,18 @@ export class AddEmployeeComponent {
       this.employeeService.addEmployee(this.employeeForm.value).subscribe({
         next: (data) => {
           console.log('Employee added successfully:', data);
+
           this.router.navigate(['/employee-list']);
+          this.toastr.success('Employee added successfully', 'Success');
         },
         error: (error) => {
           console.error('Error adding employee:', error);
+          this.toastr.error('Error adding employee:', error);
         }
       });
     } else {
       console.log('Form is invalid');
+      this.toastr.error('Form is invalid');
     }
   }
 

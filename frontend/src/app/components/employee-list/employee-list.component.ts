@@ -6,6 +6,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-employee-list',
   standalone: true,
@@ -16,7 +17,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class EmployeeListComponent implements OnInit {
   employees:Employee[]=[]
   notfoundUrl:string="assets/noData.jpg"
-  constructor(private employeeService:EmployeeService,private router:Router){}
+  constructor(private employeeService:EmployeeService,private router:Router,private toastr:ToastrService){}
 
   ngOnInit(): void {
     this.getAllEmployees();
@@ -42,12 +43,13 @@ export class EmployeeListComponent implements OnInit {
     this.employeeService.deleteEmployee(id).subscribe({
       next:(res)=>{
         console.log(res);
-        this.getAllEmployees()
+        this.getAllEmployees();
+        this.toastr.success("Employee with id "+id+" deleted successfully!")
 
       },
       error:(error:HttpErrorResponse)=>{
         console.log(error);
-
+        this.toastr.error("Error try again later!")
       }
     });
   }
