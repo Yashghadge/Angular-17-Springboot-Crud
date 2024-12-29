@@ -13,14 +13,9 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class AppComponent {
   title = 'frontend';
-  isDarkTheme = false; // Default theme
+
 
   constructor(private renderer: Renderer2) {}
 
-  toggleTheme() {
-    this.isDarkTheme = !this.isDarkTheme;
-    const themeClass = this.isDarkTheme ? 'dark-theme' : 'light-theme';
-    this.renderer.setAttribute(document.body, 'class', themeClass);
-  }
 
 }
